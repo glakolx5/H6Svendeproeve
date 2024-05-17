@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image'
 
 export default async function Home() {
   const data = await getData();
@@ -16,6 +17,22 @@ export default async function Home() {
         <h1>
           Home webapi fetch
         </h1>
+        <div>
+          <Image
+            src='http://localhost:4646/images/2024/05/17/884-1270x1270.jpg'
+            width={500}
+            height={500}
+            alt="picture of the house"
+          />
+
+          <Image
+            src='http://localhost:4646/images/2024/05/17/853-536x354.jpg'
+            width={500}
+            height={500}
+            alt="picture of the house"
+          />
+        </div>
+
         <ul>
           {data.map((datas: any) => (
             <li key={datas.id} className=" py-6">
