@@ -1,3 +1,5 @@
+
+import {redirect} from 'next/navigation'
 import Link from "next/link";
 
 export default function RegisterHouse() {
@@ -16,10 +18,12 @@ export default function RegisterHouse() {
                     "use server";
                     const town = formData.get("town") as string;
                     const price = formData.get("price") as string;
+                    const imageSrc = formData.get("imageSrc") as string;
 
                     const data = {
                         town : town,
                         price : price,
+                        imageSrc : imageSrc
                     }
 
                     const JSONData = JSON.stringify(data); 
@@ -42,11 +46,17 @@ export default function RegisterHouse() {
                     );
 
                     const result = response.status
-                    console.log(result)
-                    return result;
+
+                    if(result != 200){
+                        console.log("error in the posting images")
+                    }
+                    else {
+                        redirect("/")
+                    }
                 }}>
                     <input name="town" className=" text-black"/>
                     <input name="price" className=" text-black"/>
+                    <input name="imageSrc" className="text-black"/>
                     <button>Create house</button>
                 </form>
             </div>

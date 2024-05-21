@@ -7,13 +7,10 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HouseController : ControllerBase
+public class HouseController(MyDbContext context) : ControllerBase
 {
-    private readonly MyDbContext _context;
-    public HouseController(MyDbContext context)
-    {
-        _context = context;
-    }
+    private readonly MyDbContext _context = context;
+
     //Get all houses
     [HttpGet]
     public async Task<ActionResult<IEnumerable<HouseItem>>> GetHousesAsync()

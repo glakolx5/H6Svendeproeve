@@ -92,6 +92,10 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("ImageSrc")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("longtext");

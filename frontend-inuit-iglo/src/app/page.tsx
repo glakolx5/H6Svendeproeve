@@ -4,47 +4,47 @@ import Image from 'next/image'
 export default async function Home() {
   const data = await getData();
   return (
-    <main>
-      <div className=" underline">
-        Hello world!
-      </div>
-
-      <Link href={'/register-house'} className=" hover:underline">
-        Register house
-      </Link>
-
-      <div>
-        <h1>
-          Home webapi fetch
-        </h1>
-        <div>
-          <Image
-            src='http://localhost:4646/images/2024/05/17/884-1270x1270.jpg'
-            width={500}
-            height={500}
-            alt="picture of the house"
-          />
-
-          <Image
-            src='http://localhost:4646/images/2024/05/17/853-536x354.jpg'
-            width={500}
-            height={500}
-            alt="picture of the house"
-          />
+    <main className="flex justify-center items-center">
+      <div className="">
+        <div className=" underline">
+          Hello world!
         </div>
 
-        <ul>
-          {data.map((datas: any) => (
-            <li key={datas.id} className=" py-6">
-              <div className="">
-                Town : {datas.town}
-              </div>
-              <div>
-                Price : {datas.price}
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Link href={'/register-house'} className=" hover:underline">
+          Register house
+        </Link>
+        <h1 className="">
+          Home webapi fetch
+        </h1>
+
+
+        <div className="">
+          <div className="pt-10">
+            __ dynamic starts here __
+          </div>
+          <ul>
+            {data.map((datas: any) => (
+              <li key={datas.id} className="">
+                <div className="">
+                  Town : {datas.town}
+                </div>
+                <div>
+                  Price : {datas.price}
+                </div>
+                <div>
+                  <Image
+                    src={datas.imageSrc}
+                    width={500}
+                    height={500}
+                    alt="picture of the house"
+                  />
+                </div>
+                <div className="pt-12"></div>
+              </li>
+            ))}
+          </ul>
+
+        </div>
       </div>
     </main>
   );
