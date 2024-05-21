@@ -20,6 +20,21 @@ public class HouseController(MyDbContext context) : ControllerBase
 
     //GET house
 
+    [HttpGet("{Id}")]
+    public async Task<ActionResult<HouseItem>> GetHouseItem(Guid Id)
+    {
+        var houseItem = await _context.HouseItems.FindAsync(Id);
+        if (houseItem == null)
+        {
+            return NotFound();
+
+        }
+        else
+        {
+            return houseItem;
+        }
+    }
+
     //POST house
     [HttpPost]
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)

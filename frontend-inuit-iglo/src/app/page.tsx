@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 export default async function Home() {
   const data = await getData();
+  
   return (
     <main className="flex justify-center items-center">
       <div className="">
@@ -27,33 +28,34 @@ export default async function Home() {
             {data.map((datas: any) => (
 
               <li key={datas.id} className="py-5">
-                <div className=" border-2 rounded-md">
-                  <div className="m-10">
-                    <div className="">
-                      Town : {datas.town}
+                <Link href={datas.id}>
+                  <div className=" border-2 rounded-md">
+                    <div className="m-10">
+                      <div className="">
+                        Town : {datas.town}
+                      </div>
+                      <div>
+                        Price : {datas.price}
+                      </div>
                     </div>
-                    <div>
-                      Price : {datas.price}
+                    <div className="m-10">
+                      <Image
+                        src={datas.imageSrc}
+                        width={500}
+                        height={500}
+                        alt="picture of the house"
+                      />
                     </div>
+
                   </div>
-                  <div className="m-10">
-                    <Image
-                      src={datas.imageSrc}
-                      width={500}
-                      height={500}
-                      alt="picture of the house"
-                    />
-                  </div>
-                  
-                </div>
-                
+                </Link>
               </li>
-              
+
 
             ))}
-            
+
           </ul>
-          
+
         </div>
       </div>
     </main>
