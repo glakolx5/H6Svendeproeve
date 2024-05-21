@@ -22,28 +22,38 @@ export default async function Home() {
           <div className="pt-10">
             __ dynamic starts here __
           </div>
+          <div className="pt-12"></div>
           <ul>
             {data.map((datas: any) => (
-              <li key={datas.id} className="">
-                <div className="">
-                  Town : {datas.town}
-                </div>
-                <div>
-                  Price : {datas.price}
-                </div>
-                <div>
-                  <Image
-                    src={datas.imageSrc}
-                    width={500}
-                    height={500}
-                    alt="picture of the house"
-                  />
-                </div>
-                <div className="pt-12"></div>
-              </li>
-            ))}
-          </ul>
 
+              <li key={datas.id} className="py-5">
+                <div className=" border-2 rounded-md">
+                  <div className="m-10">
+                    <div className="">
+                      Town : {datas.town}
+                    </div>
+                    <div>
+                      Price : {datas.price}
+                    </div>
+                  </div>
+                  <div className="m-10">
+                    <Image
+                      src={datas.imageSrc}
+                      width={500}
+                      height={500}
+                      alt="picture of the house"
+                    />
+                  </div>
+                  
+                </div>
+                
+              </li>
+              
+
+            ))}
+            
+          </ul>
+          
         </div>
       </div>
     </main>
