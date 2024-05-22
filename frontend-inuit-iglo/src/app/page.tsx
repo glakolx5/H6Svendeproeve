@@ -3,24 +3,27 @@ import Image from 'next/image'
 
 export default async function Home() {
   const data = await getData();
-  
+
   return (
     <main className="flex justify-center items-center">
       <div className="">
         <div className=" underline">
           Hello world!
         </div>
+        <div className="grid grid-cols-1">
+          <Link href={'/register-house'} className=" hover:underline">
+            Register house
+          </Link>
+          <Link href={'/login'} className=" hover:underline">
+            Login
+          </Link>
+        </div>
 
-        <Link href={'/register-house'} className=" hover:underline">
-          Register house
-        </Link>
-        <h1 className="">
-          Home webapi fetch
-        </h1>
-
-
-        <div className="">
-          <div className="pt-10">
+        <div className="pt-10">
+          <h1 className="">
+            Home page
+          </h1>
+          <div className="">
             __ dynamic starts here __
           </div>
           <div className="pt-12"></div>
@@ -41,8 +44,8 @@ export default async function Home() {
                     <div className="m-10">
                       <Image
                         src={datas.imageSrc}
-                        width={500}
                         height={500}
+                        width={500}
                         alt="picture of the house"
                       />
                     </div>

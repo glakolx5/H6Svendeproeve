@@ -16,6 +16,7 @@ export default function RegisterHouse() {
             <div>
                 <form action={async (formData: FormData) => {
                     "use server";
+                    
                     const town = formData.get("town") as string;
                     const price = formData.get("price") as string;
                     const imageSrc = formData.get("imageSrc") as string;
@@ -54,15 +55,20 @@ export default function RegisterHouse() {
                         redirect("/")
                     }
                 }}>
+
                     <div className='grid grid-cols-1 gap-5'>
                         <label htmlFor="town">Town:</label>
                         <input name="town" className=" text-black" />
+
                         <label htmlFor="price">Price:</label>
                         <input name="price" className=" text-black" />
+
                         <label htmlFor="imageSrc">Image source:</label>
                         <input name="imageSrc" className="text-black" />
+
                         <button className='hover:underline'>Create house</button>
                     </div>
+
                 </form>
             </div>
         </main>
