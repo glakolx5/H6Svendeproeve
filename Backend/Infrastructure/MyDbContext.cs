@@ -6,5 +6,6 @@ namespace Backend.Infrastructure;
 
 public class MyDbContext(DbContextOptions options) : IdentityDbContext<AppUser>(options)
 {
-    public DbSet<HouseItem> HouseItems {get; set;} = null!;
+    public DbSet<HouseItem> HouseItems { get; set; } = null!;
+
 }

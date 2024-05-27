@@ -1,7 +1,14 @@
-export default function RegistedPage(){
+import Link from "next/link";
+
+export default function RegistedPage() {
     return (
         <div>
-            Thanks for registering!
+            <div>
+                <Link href={'/'} className="hover:underline">Home</Link>
+            </div>
+            <div>
+                Thanks for registering!
+            </div>
         </div>
     )
 }
