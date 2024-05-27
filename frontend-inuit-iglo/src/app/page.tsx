@@ -7,11 +7,11 @@ export default async function Home() {
   return (
     <main className="flex justify-center items-center">
       <div className="">
-        
+
         <div className=" underline">
           Hello world!
         </div>
-        
+
         <div className="grid grid-cols-1">
 
           <Link href={'/register-house'} className=" hover:underline">
@@ -47,6 +47,20 @@ export default async function Home() {
                       </div>
                       <div>
                         Price : {datas.price}
+                      </div>
+                      <div>
+                        Date from : {new Date(datas.dateFrom).toLocaleString('da-DK', {
+                          year: 'numeric',
+                          month: 'numeric',
+                          day: 'numeric'
+                        })}
+                      </div>
+                      <div className="">
+                        Date to: {new Date(datas.dateTo).toLocaleString('da-DK', {
+                          year: 'numeric',
+                          month: 'numeric',
+                          day: 'numeric'
+                        })}
                       </div>
                     </div>
                     <div className="m-10">

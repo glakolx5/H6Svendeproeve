@@ -20,11 +20,16 @@ export default function RegisterHouse() {
                     const town = formData.get("town") as string;
                     const price = formData.get("price") as string;
                     const imageSrc = formData.get("imageSrc") as string;
+                    const dateFrom = formData.get("dateFrom");
+                    const dateTo = formData.get("dateTo");
+                    
 
                     const data = {
                         town: town,
                         price: price,
-                        imageSrc: imageSrc
+                        imageSrc: imageSrc,
+                        dateFrom: dateFrom,
+                        dateTo: dateTo
                     }
 
                     const JSONData = JSON.stringify(data);
@@ -65,6 +70,12 @@ export default function RegisterHouse() {
 
                         <label htmlFor="imageSrc">Image source:</label>
                         <input name="imageSrc" className="text-black" />
+
+                        <label htmlFor="dateFrom">Date From</label>
+                        <input type='date' name="dateFrom" className="text-black" />
+
+                        <label htmlFor="dateTo">Date To</label>
+                        <input type='date' name="dateTo" className="text-black" />
 
                         <button className='hover:underline'>Create house</button>
                     </div>
