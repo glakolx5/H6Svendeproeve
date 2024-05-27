@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Image from 'next/image'
 
+
+
+
 export default async function Home() {
   const data = await getData();
 
@@ -11,6 +14,8 @@ export default async function Home() {
         <div className=" underline">
           Hello world!
         </div>
+
+        
 
         <div className="grid grid-cols-1">
 
@@ -26,6 +31,8 @@ export default async function Home() {
             Register
           </Link>
         </div>
+
+  
 
         <div className="pt-10">
           <h1 className="">
