@@ -3,14 +3,17 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
 export default function Page() {
+
     const router = useRouter()
+    
+
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
         const email = formData.get('email')
         const password = formData.get('password')
-
+        
 
         const response = await fetch('http://localhost:5033/login', {
             method: 'POST',
@@ -18,15 +21,19 @@ export default function Page() {
             body: JSON.stringify({ email, password })
         })
 
+        
+
         if (response.ok) {
-            console.log("you are now loggin in")
-            router.push("/register-house")
+            console.log("you are now logged in")
+            response.json().then(body => console.log(body))
+           
+            //router.push("/register-house")
         }
-        else if(response.status == 401){
+        else if (response.status == 401) {
             console.log("unauthorized")
         }
         else {
-             console.log("you are not logged in")
+            console.log("you are not logged in")
         }
 
 

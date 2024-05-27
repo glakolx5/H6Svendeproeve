@@ -7,15 +7,23 @@ export default async function Home() {
   return (
     <main className="flex justify-center items-center">
       <div className="">
+        
         <div className=" underline">
           Hello world!
         </div>
+        
         <div className="grid grid-cols-1">
+
           <Link href={'/register-house'} className=" hover:underline">
             Register house
           </Link>
+
           <Link href={'/login'} className=" hover:underline">
             Login
+          </Link>
+
+          <Link href={"/register"} className="hover:underline">
+            Register
           </Link>
         </div>
 
