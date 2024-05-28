@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
-import { SignIn } from "./components/auth/sign-in-button";
-import { SignOut } from "./components/auth/sign-out-button";
+import { cn } from "./lib/utils";
+import { ThemeProvider } from "./components/themeprovider"
+import Header from "./header";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 export const metadata: Metadata = {
   title: "Inuit Iglo",
   description: "Rent houses or cabins",
@@ -18,12 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(
+        "min-h-screen bg-background font-sans antialiased",
+        fontSans.variable)}>
 
-        <SignIn/>
-        <SignOut/>
-        
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+
+
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -44,8 +44,8 @@ export default async function HouseItem({ params }: { params: { id: string } }) 
 }
 
 async function getData(id: any) {
-    const webapi = process.env.WEB_API_HOST;
-    const endpoint = process.env.ENDPOINT_HOUSE;
+    const webapi = "http://localhost:5033"
+    const endpoint = "/api/House";
 
     const fulllink = `${webapi}${endpoint}/${id}`
     const res = await fetch(fulllink, { cache: 'no-store' });

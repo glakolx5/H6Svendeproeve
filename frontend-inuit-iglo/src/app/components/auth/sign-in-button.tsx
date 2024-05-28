@@ -1,4 +1,5 @@
 import { signIn } from "../../auth"
+import { Button } from "../ui/button"
 
 export function SignIn() {
   return (
@@ -8,7 +9,7 @@ export function SignIn() {
         await signIn()
       }}
     >
-      <button type="submit">Sign in</button>
+      <Button type="submit">Sign in</Button>
     </form>
   )
 }
