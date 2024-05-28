@@ -2,6 +2,9 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
 import { signInSchema } from "./lib/zod"
+import { URLSearchParams } from "url"
+
+
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
@@ -15,7 +18,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                email: { label: "email", type: "text" },
+                email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
             authorize: async (credentials) => {
@@ -27,7 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
                 const { email, password } = await signInSchema.parseAsync(credentials)
-                console.log(email, password)
+
 
                 const res = await fetch("http://localhost:5033/login", {
                     method: 'POST',
@@ -35,7 +38,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     headers: { "Content-Type": "application/json" }
                 })
                 const user = await res.json()
-                console.log(res)
+                //console.log(user)
                 // If no error and we have user data, return it
                 if (res.ok && user) {
                     return user
@@ -45,15 +48,66 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
         })],
     callbacks: {
-        jwt: async ({ token, user }) => {
-            if (user) token = user as unknown as { [key: string]: any }
-            console.log(token)
-            return token
+        jwt: async ({ token, user, account }: any) => {
+            if (account && user) {
+                return {
+
+                    tokenType: account.token_type,
+                    accessToken: account.accessToken,
+                    accessTokenExpires: Date.now() + account.expires_in,
+                    refreshToken: account.refresh_token,
+                    user,
+                }
+            }
+            if (Date.now() < token.accessTokenExpires) {
+                return token
+            }
+            return refreshAccessToken(token)
         },
         session: async ({ session, token }: any) => {
-            session.user = { ...token }
-            return session
+            if (token) {
+                session.user = token.user
+                session.accessToken = token.accessToken
+                session.error = token.error
+            }
+            return token
         }
     },
     secret: "supersecret"
 })
+
+async function refreshAccessToken(token: any) {
+    try {
+        const url = "http://localhost:5033/refresh" +
+            new URLSearchParams({
+                grant_type: "refresh_token",
+                refresh_token: token.refreshToken,
+            })
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+        })
+        const refreshedTokens = await response.json()
+
+        if (!response.ok) {
+            console.log("something wrong with refreshedTokens")
+        }
+        return {
+            ...token,
+            tokenType: refreshedTokens.token_type,
+            accessToken: refreshedTokens.access_token,
+            expiresIn: Date.now() + refreshedTokens.expires_in,
+            refreshToken: refreshedTokens.refresh_token ?? token.refreshToken
+        }
+    }
+    catch (error) {
+        console.log(error)
+
+        return {
+            ...token,
+            error: "RefreshAccessTokenError"
+        }
+
+    }
+}

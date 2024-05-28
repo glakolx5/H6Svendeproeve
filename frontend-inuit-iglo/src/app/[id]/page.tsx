@@ -8,6 +8,7 @@ export default async function HouseItem({ params }: { params: { id: string } }) 
     return (
         <main className="flex justify-center items-center">
             <div>
+
                 <div>
                     <Link href={"/"} className="hover:underline">Home</Link>
                 </div>
@@ -17,6 +18,7 @@ export default async function HouseItem({ params }: { params: { id: string } }) 
                 </div>
 
                 <div className="grid grid-cols-1 border-2 rounded-md">
+
                     <div className="m-10">
                         <div>
                             {data.id}
@@ -32,7 +34,9 @@ export default async function HouseItem({ params }: { params: { id: string } }) 
                             height={500}
                             width={500}
                         />
+
                     </div>
+                    
                 </div>
             </div>
         </main>

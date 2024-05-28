@@ -1,8 +1,14 @@
-
+import { auth } from "../auth"
 import { redirect } from 'next/navigation'
 import Link from "next/link";
 
-export default function RegisterHouse() {
+export default async function RegisterHouse() {
+    const session = await auth()
+
+    if(!session) {
+        redirect("/")
+    }
+
     return (
         <main>
             <div>
@@ -16,13 +22,13 @@ export default function RegisterHouse() {
             <div>
                 <form action={async (formData: FormData) => {
                     "use server";
-                    
+
                     const town = formData.get("town") as string;
                     const price = formData.get("price") as string;
                     const imageSrc = formData.get("imageSrc") as string;
                     const dateFrom = formData.get("dateFrom");
                     const dateTo = formData.get("dateTo");
-                    
+
 
                     const data = {
                         town: town,

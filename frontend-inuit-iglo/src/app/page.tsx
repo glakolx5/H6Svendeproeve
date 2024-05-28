@@ -15,7 +15,7 @@ export default async function Home() {
           Hello world!
         </div>
 
-        
+
 
         <div className="grid grid-cols-1">
 
@@ -23,25 +23,28 @@ export default async function Home() {
             Register house
           </Link>
 
-          <Link href={'/login'} className=" hover:underline">
-            Login
-          </Link>
-
           <Link href={"/register"} className="hover:underline">
             Register
           </Link>
+
         </div>
 
-  
+
 
         <div className="pt-10">
+
           <h1 className="">
             Home page
           </h1>
+
           <div className="">
             __ dynamic starts here __
           </div>
-          <div className="pt-12"></div>
+
+          <div className="pt-12">
+
+          </div>
+          
           <ul>
             {data.map((datas: any) => (
 
