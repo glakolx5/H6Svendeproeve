@@ -98,8 +98,8 @@ export default async function Home() {
 }
 
 async function getData() {
-  const webapi = process.env.WEB_API_HOST;
-  const endpoint = process.env.ENDPOINT_HOUSE;
+  const webapi = "http://localhost:5033";
+  const endpoint = "/api/House";
 
   const fulllink = `${webapi}${endpoint}`
   const res = await fetch(fulllink, { cache: 'no-store' });

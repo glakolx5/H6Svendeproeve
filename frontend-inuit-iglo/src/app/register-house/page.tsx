@@ -40,8 +40,8 @@ export default async function RegisterHouse() {
 
                     const JSONData = JSON.stringify(data);
 
-                    const webapi = process.env.WEB_API_HOST;
-                    const endpoint = process.env.ENDPOINT_HOUSE;
+                    const webapi = "http://localhost:5033";
+                    const endpoint = "/api/House";
 
                     const fulllink = `${webapi}${endpoint}`
 
