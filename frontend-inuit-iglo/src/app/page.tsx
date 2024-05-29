@@ -2,35 +2,13 @@ import Link from "next/link";
 import Image from 'next/image'
 
 
-
-
 export default async function Home() {
+
   const data = await getData();
 
   return (
     <main className="flex justify-center items-center">
       <div className="">
-
-        <div className=" underline">
-          Hello world!
-        </div>
-
-
-
-        <div className="grid grid-cols-1">
-
-          <Link href={'/register-house'} className=" hover:underline">
-            Register house
-          </Link>
-
-          <Link href={"/register"} className="hover:underline">
-            Register
-          </Link>
-
-        </div>
-
-
-
         <div className="pt-10">
 
           <h1 className="">
