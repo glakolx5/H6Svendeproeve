@@ -7,25 +7,10 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className="flex justify-center items-center">
-      <div className="">
+    <main className="container mx-auto py-12 space-y-8">
         <div className="pt-10">
-
-          <h1 className="">
-            Home page
-          </h1>
-
-          <div className="">
-            __ dynamic starts here __
-          </div>
-
-          <div className="pt-12">
-
-          </div>
-          
           <ul>
             {data.map((datas: any) => (
-
               <li key={datas.id} className="py-5">
                 <Link href={datas.id}>
                   <div className=" border-2 rounded-md">
@@ -63,14 +48,9 @@ export default async function Home() {
                   </div>
                 </Link>
               </li>
-
-
             ))}
-
           </ul>
-
         </div>
-      </div>
     </main>
   );
 }

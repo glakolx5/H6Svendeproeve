@@ -1,24 +1,16 @@
-import Link from "next/link";
 import Image from "next/image"
 
 export default async function HouseItem({ params }: { params: { id: string } }) {
-   
+
     const data = await getData(params.id);
 
     return (
-        <main className="flex justify-center items-center">
+        <main className="container mx-auto py-12 space-y-8">
             <div>
-
-                <div>
-                    <Link href={"/"} className="hover:underline">Home</Link>
-                </div>
-
                 <div>
                     id {params.id}
                 </div>
-
                 <div className="grid grid-cols-1 border-2 rounded-md">
-
                     <div className="m-10">
                         <div>
                             {data.id}
@@ -36,7 +28,6 @@ export default async function HouseItem({ params }: { params: { id: string } }) 
                         />
 
                     </div>
-                    
                 </div>
             </div>
         </main>
