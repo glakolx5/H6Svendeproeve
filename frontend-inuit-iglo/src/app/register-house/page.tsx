@@ -8,13 +8,16 @@ import { Button } from "../components/ui/button";
 import { createHouse } from "./actions";
 
 export default async function RegisterHouse() {
-    
+
     const session = await auth()
 
-    if (!session) {
-        redirect("/")
-    }
+    /*
+        if (!session) {
+            redirect("/")
+        } */
 
+
+    
     return (
         <main className="container mx-auto py-12 space-y-8">
             <form action={createHouse}>
@@ -24,7 +27,7 @@ export default async function RegisterHouse() {
                     <Input name="town" className=" text-1xl" />
 
                     <Label htmlFor="price" className="font-bold text-1xl">Price:</Label>
-                    <Input name="price" className="text-1xl"/>
+                    <Input name="price" className="text-1xl" />
 
                     <Label htmlFor="imageSrc" className="font-bold text-1xl">Image source:</Label>
                     <Input name="imageSrc" className="text-1xl" />

@@ -49,28 +49,46 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })],
     callbacks: {
         jwt: async ({ token, user, account }: any) => {
-            if (account && user) {
-                return {
 
-                    tokenType: account.token_type,
-                    accessToken: account.accessToken,
-                    accessTokenExpires: Date.now() + account.expires_in,
-                    refreshToken: account.refresh_token,
-                    user,
+/*             console.log("jwt starts:\n")
+            console.log("token starts:\n")
+            console.log(token)
+
+            console.log("user starts:\n")
+            console.log(user)
+
+            console.log("account starts:\n")
+            console.log(account) */
+
+
+            if (account && user) {
+/*                 console.log("account && user starts")
+                console.log("user starts again:\n")
+                console.log(user)
+    
+                console.log("account start again s:\n")
+                console.log(account) */
+
+                return {
+                    tokenType: user.tokenType,
+                    accessToken: user.accessToken,
+                    expiresIn: user.expiresIn,
+                    refreshToken: user.refreshToken,
                 }
             }
-            if (Date.now() < token.accessTokenExpires) {
-                return token
-            }
-            return refreshAccessToken(token)
+            return token
         },
         session: async ({ session, token }: any) => {
-            if (token) {
-                session.user = token.user
-                session.accessToken = token.accessToken
-                session.error = token.error
-            }
-            return token
+/*             console.log("session starts\n")
+            console.log(session)
+
+            console.log("token starts\n")
+            console.log(token) */
+            session.user.email = token.accessToken
+            //session.accessToken = token.accessToken
+            //console.log(session.accessToken)
+
+            return session
         }
     },
     secret: "supersecret"
@@ -78,6 +96,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 async function refreshAccessToken(token: any) {
     try {
+        console.log("refreshAccessToken starts:\n")
         const url = "http://localhost:5033/refresh" +
             new URLSearchParams({
                 grant_type: "refresh_token",

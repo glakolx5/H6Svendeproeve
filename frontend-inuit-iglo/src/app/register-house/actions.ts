@@ -1,8 +1,15 @@
 "use server"
 
 import { redirect } from "next/navigation";
+import { auth } from "../auth";
+import { headers } from "next/headers";
+
 
 export async function createHouse(formData: FormData) {
+
+    const session = await auth() 
+
+    
 
     const town = formData.get("town") as string;
     const price = formData.get("price") as string;
@@ -26,17 +33,22 @@ export async function createHouse(formData: FormData) {
 
     const fulllink = `${webapi}${endpoint}`
 
+    const bear = session?.user?.email
+    
     const response = await fetch(fulllink,
         {
             method: 'POST',
             headers: {
+                
                 'Content-Type': 'application/json',
-            },
+                'Authorization': 'Bearer ' + bear,
+                
+            },   
             body: JSONData
 
         }
     );
-
+    
     const result = response.status
 
     if (result != 200) {
@@ -46,6 +58,8 @@ export async function createHouse(formData: FormData) {
         console.log("register house complete")
         redirect("/")
     }
+
+
 }
 
 

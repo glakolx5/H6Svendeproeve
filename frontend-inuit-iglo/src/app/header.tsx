@@ -28,8 +28,7 @@ export default async function Header() {
 
                     <div >
                         {session ? <Link href={"/register-house"} className="flex items-center gap-1 hover:underline font-bold">
-                            Register house
-                        </Link> : <></>}
+                            Register house</Link> : <></>}
                     </div>
 
                 </div>

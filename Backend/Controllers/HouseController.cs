@@ -1,5 +1,6 @@
 using Backend.Infrastructure;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,7 @@ public class HouseController(MyDbContext context) : ControllerBase
 
     //POST house
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)
     {
         _context.HouseItems.Add(item);
