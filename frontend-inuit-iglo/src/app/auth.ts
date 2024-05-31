@@ -37,7 +37,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     body: JSON.stringify({ email, password }),
                     headers: { "Content-Type": "application/json" }
                 })
-                const user = await res.json()
+                var user = await res.json()
+
+                user = {...user, email: email}
                 //console.log(user)
                 // If no error and we have user data, return it
                 if (res.ok && user) {
@@ -59,6 +61,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             console.log("account starts:\n")
             console.log(account) */
+            console.log(user)
 
 
             if (account && user) {
@@ -70,6 +73,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 console.log(account) */
 
                 return {
+                    email: user.email,
                     tokenType: user.tokenType,
                     accessToken: user.accessToken,
                     expiresIn: user.expiresIn,
@@ -84,7 +88,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             console.log("token starts\n")
             console.log(token) */
-            session.user.email = token.accessToken
+            console.log(token)
+            session.user.id = token.accessToken
+            session.user.email = token.email
             //session.accessToken = token.accessToken
             //console.log(session.accessToken)
 

@@ -16,7 +16,7 @@ export async function createHouse(formData: FormData) {
     const imageSrc = formData.get("imageSrc") as string;
     const dateFrom = formData.get("dateFrom");
     const dateTo = formData.get("dateTo");
-
+    
 
     const data = {
         town: town,
@@ -33,7 +33,7 @@ export async function createHouse(formData: FormData) {
 
     const fulllink = `${webapi}${endpoint}`
 
-    const bear = session?.user?.email
+    const bear = session?.user?.id
     
     const response = await fetch(fulllink,
         {

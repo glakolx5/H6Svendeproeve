@@ -9,12 +9,19 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto py-12 space-y-8">
-      <div className="text-2xl text-">
-        welcome to Inuit-Iglo.gl
+
+      <div className="grid grid-cols-1 my-10 justify-items-center">
+
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          Welcome to Inuit-Iglo.gl
+        </h1>
+
+        <h2 className="scroll-m-20  pb-2 text-3xl font-semibold first:mt-3 pt-4">
+          Here are some houses or cabins you can rent
+        </h2>
+
       </div>
-      <div>
-        Here are some houses or cabins you can rent
-      </div>
+
       <div className="grid grid-cols-4 gap-8">
 
         {data.map((datas: any) => (
@@ -22,40 +29,35 @@ export default async function Home() {
             <Link href={datas.id}>
 
               <div className="flex justify-between mx-4 mb-2">
-                <Label className=" font-bold">Town:</Label>
-                <Label className=" font-bold">{datas.town}</Label>
+                <Label className="text-lg font-bold">Town:</Label>
+                <Label className="text-lg font-bold">{datas.town}</Label>
               </div>
 
-              <Separator className="my-4"/>
+              <Separator className="my-4" />
 
               <div className="flex justify-between mx-4 mb-2">
-                <Label className=" font-bold">Price:</Label>
-                <Label className=" font-bold">{datas.price}</Label>
+                <Label className="text-lg font-bold">Price:</Label>
+                <Label className="text-lg font-bold">{datas.price}</Label>
               </div>
 
-              <Separator className="my-4"/>
+              <Separator className="my-4" />
 
-              <div className="flex justify-between mx-4 mb-2">
-                <Label className=" font-bold">Date from:</Label>
-                <Label className=" font-bold">{new Date(datas.dateFrom).toLocaleString('da-DK', {
-                    year: '2-digit',
-                    month: 'short',
-                    day: 'numeric'
-                  })}</Label>
+              <div className="flex justify-between mx-4 mb-2 ">
+
+                <Label className="text-sm font-bold">from {new Date(datas.dateFrom).toLocaleString('da-DK', {
+                  //year: '2-digit',
+                  month: 'short',
+                  day: 'numeric'
+                })}</Label>
+
+                <Label className=" text-sm font-bold ">to {new Date(datas.dateTo).toLocaleString('da-DK', {
+                  year: '2-digit',
+                  month: 'short',
+                  day: 'numeric'
+                })}</Label>
               </div>
 
-              <Separator className="my-4"/>
-
-              <div className="flex justify-between mx-4 mb-2">
-                <Label className=" font-bold">Date to:</Label>
-                <Label className=" font-bold">{new Date(datas.dateTo).toLocaleString('da-DK', {
-                    year: '2-digit',
-                    month: 'short',
-                    day: 'numeric'
-                  })}</Label>
-              </div>
-
-              <Separator className="my-4"/>
+              <Separator className="my-4" />
 
               <Image
                 src={datas.imageSrc}
