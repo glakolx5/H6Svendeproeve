@@ -12,7 +12,7 @@ public class HouseController(MyDbContext context) : ControllerBase
 {
     private readonly MyDbContext _context = context;
 
-    [HttpGet("api/House/search/{town}")]
+    [HttpGet("search/{town}")]
     public async Task<IEnumerable<HouseItem>> Search(string town)
     {
         IQueryable <HouseItem> query = _context.HouseItems;

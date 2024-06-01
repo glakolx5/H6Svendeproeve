@@ -7,17 +7,14 @@ import { headers } from "next/headers";
 
 export async function createHouse(formData: FormData) {
 
-    const session = await auth() 
-
+    const session = await auth()
     
-
     const town = formData.get("town") as string;
     const price = formData.get("price") as string;
     const imageSrc = formData.get("imageSrc") as string;
     const dateFrom = formData.get("dateFrom");
     const dateTo = formData.get("dateTo");
     
-
     const data = {
         town: town,
         price: price,
