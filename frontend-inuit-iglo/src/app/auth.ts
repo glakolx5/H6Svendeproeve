@@ -52,25 +52,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         jwt: async ({ token, user, account }: any) => {
 
-/*             console.log("jwt starts:\n")
-            console.log("token starts:\n")
-            console.log(token)
-
-            console.log("user starts:\n")
-            console.log(user)
-
-            console.log("account starts:\n")
-            console.log(account) */
-            console.log(user)
-
+            //console.log(user)
 
             if (account && user) {
-/*                 console.log("account && user starts")
-                console.log("user starts again:\n")
-                console.log(user)
-    
-                console.log("account start again s:\n")
-                console.log(account) */
 
                 return {
                     email: user.email,
@@ -83,16 +67,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return token
         },
         session: async ({ session, token }: any) => {
-/*             console.log("session starts\n")
-            console.log(session)
-
-            console.log("token starts\n")
-            console.log(token) */
             console.log(token)
             session.user.id = token.accessToken
             session.user.email = token.email
-            //session.accessToken = token.accessToken
-            //console.log(session.accessToken)
 
             return session
         }

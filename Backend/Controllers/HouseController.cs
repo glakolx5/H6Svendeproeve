@@ -12,6 +12,19 @@ public class HouseController(MyDbContext context) : ControllerBase
 {
     private readonly MyDbContext _context = context;
 
+    [HttpGet("api/House/search/{town}")]
+    public async Task<IEnumerable<HouseItem>> Search(string town)
+    {
+        IQueryable <HouseItem> query = _context.HouseItems;
+
+        if(!string.IsNullOrEmpty(town)){
+            query = query.Where(e => e.Town.Contains(town));
+        }
+
+        return await query.ToListAsync();
+    }
+    
+
     //Get all houses
     [HttpGet]
     public async Task<ActionResult<IEnumerable<HouseItem>>> GetHousesAsync()
