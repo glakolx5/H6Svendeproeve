@@ -11,13 +11,10 @@ export default async function RegisterHouse() {
 
     const session = await auth()
 
-    /*
-        if (!session) {
-            redirect("/")
-        } */
+    if (!session) {
+        redirect("/")
+    }
 
-
-    
     return (
         <main className="container mx-auto py-12 space-y-8">
             <form action={createHouse}>

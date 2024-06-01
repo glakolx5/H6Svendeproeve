@@ -39,7 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 })
                 var user = await res.json()
 
-                user = {...user, email: email}
+                user = { ...user, email: email }
                 //console.log(user)
                 // If no error and we have user data, return it
                 if (res.ok && user) {
@@ -51,8 +51,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })],
     callbacks: {
         jwt: async ({ token, user, account }: any) => {
-
-            //console.log(user)
 
             if (account && user) {
 
@@ -67,14 +65,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return token
         },
         session: async ({ session, token }: any) => {
-            console.log(token)
             session.user.id = token.accessToken
             session.user.email = token.email
 
             return session
         }
     },
-    secret: "supersecret"
+    secret: "supersecret",
+    pages: {
+        signOut: '/',
+    }
 })
 
 async function refreshAccessToken(token: any) {

@@ -15,7 +15,7 @@ export async function createUser(formData: FormData) {
     }
 
     if (data["password"] !== data["password_confirm"]) {
-        return Error
+        return new Error("passwords are not the same")
     }
     else {
         const JSONData = JSON.stringify({ email, password });

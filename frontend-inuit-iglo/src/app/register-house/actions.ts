@@ -2,8 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { auth } from "../auth";
-import { headers } from "next/headers";
-
 
 export async function createHouse(formData: FormData) {
 
