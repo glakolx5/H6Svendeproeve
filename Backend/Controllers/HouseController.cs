@@ -33,7 +33,6 @@ public class HouseController(MyDbContext context) : ControllerBase
     }
 
     //GET house
-
     [HttpGet("{Id}")]
     public async Task<ActionResult<HouseItem>> GetHouseItem(Guid Id)
     {
@@ -41,7 +40,6 @@ public class HouseController(MyDbContext context) : ControllerBase
         if (houseItem == null)
         {
             return NotFound();
-
         }
         else
         {

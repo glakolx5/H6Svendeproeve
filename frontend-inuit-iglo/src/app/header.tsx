@@ -45,7 +45,6 @@ export default async function Header() {
                         {session ? <SignOut /> : <SignIn />}
                     </div>
                 </div>
-
             </div>
         </div>
 

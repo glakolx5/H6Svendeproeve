@@ -4,7 +4,6 @@ import { useDebouncedCallback } from "use-debounce"
 
 import { Input } from "./ui/input"
 
-
 export default function Search({ placeholder }: { placeholder: string }) {
 
     const searchParams = useSearchParams()

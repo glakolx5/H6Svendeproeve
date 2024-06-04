@@ -4,9 +4,6 @@ import Search from "./components/search";
 import { HouseCard } from "./house-card";
 import WelcomeItem from "./welcome-item";
 
-
-
-
 export default async function Home({
   searchParams
 }: {
@@ -16,15 +13,11 @@ export default async function Home({
   }
 }) {
 
-
-
   const data = await getData();
 
   const query = searchParams?.query || ''
 
   const searches = await getSearch(query)
-
-
 
   return (
     <main className="container mx-auto py-12 space-y-8">
