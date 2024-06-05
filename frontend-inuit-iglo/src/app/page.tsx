@@ -27,7 +27,7 @@ export default async function Home({
         <Search placeholder="Search by town"></Search>
       </div>
 
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <Suspense fallback={"loading ..."}>
           {
             query

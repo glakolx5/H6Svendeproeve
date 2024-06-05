@@ -13,16 +13,16 @@ export default async function Header() {
     const username = session?.user?.email
 
     return (
-        <div className=" bg-slate-400 py-4 sticky top-0 z-50">
+        <div className=" bg-secondary py-4 sticky top-0 z-50">
             <div className=" container flex justify-between items-center">
                 <div className=" flex items-center gap-12">
 
-                    <Link href={"/"} className="flex items-center gap-2 text-black font-bold text-3xl">
+                    <Link href={"/"} className="flex items-center gap-2 text-black font-bold lg:text-3xl dark:text-white">
                         <Image src="/logo.png" width={50} height={50} alt="logo" />
                         Inuit-Iglo.gl
                     </Link>
 
-                    <div >
+                    <div className="">
                         {session ? <> </> : <Link href={"/register"} className="flex items-center gap-1 hover:underline font-bold">
                             Register
                         </Link>}

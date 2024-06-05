@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function HouseCard({datas} : { datas : any}) {
     return (
-        <div key={datas.id} className="border-4 p-8 rounded-xl bg-slate-300 dark:bg-gray-900">
+        <div key={datas.id} className="border-2 p-8 rounded-xl  bg-primary dark:bg-gray-900">
             <Link href={datas.id}>
 
                 <div className="flex justify-between mx-4 mb-2">
