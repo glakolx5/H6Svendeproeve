@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240527114901_initialMigration")]
+    [Migration("20240609205621_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -95,9 +95,18 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTime>("DateFrom")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateTo")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("ImageSrc")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Price")
                         .IsRequired()

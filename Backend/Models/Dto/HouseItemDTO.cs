@@ -1,6 +1,6 @@
 namespace Backend.Models;
 
-public class HouseItem
+public class HouseItemDTO
 {
     public Guid Id { get; set; }
     public string Town { get; set; } = "town_null";
@@ -8,6 +8,7 @@ public class HouseItem
     public string ImageSrc { get; set; } = "image_null";
     public DateTime DateFrom { get; set; }
     public DateTime DateTo { get; set; }
+
     public bool IsComplete { get; set; }
 
 }

@@ -102,6 +102,9 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("longtext");

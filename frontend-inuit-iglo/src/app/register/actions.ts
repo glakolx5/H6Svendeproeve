@@ -1,8 +1,7 @@
-"use server"
-
 import { redirect } from "next/navigation";
 
 export async function createUser(formData: FormData) {
+    "use server"
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -33,6 +32,7 @@ export async function createUser(formData: FormData) {
         );
         const result = response.status
         if (result != 200) {
+            console.log(result)
             return Error
         }
         else {

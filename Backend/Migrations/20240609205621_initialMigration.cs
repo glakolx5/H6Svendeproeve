@@ -79,7 +79,10 @@ namespace Backend.Migrations
                     Price = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ImageSrc = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateFrom = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DateTo = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsComplete = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
