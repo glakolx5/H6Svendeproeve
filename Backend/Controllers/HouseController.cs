@@ -10,8 +10,15 @@ namespace Backend.Controllers;
 [Route("api/[controller]")]
 public class HouseController(MyDbContext context) : ControllerBase
 {
+    /*
+    Dependency injection for context - HouseItems
+    */
     private readonly MyDbContext _context = context;
 
+    /*
+      will search on
+      http://localhost:xxxx/api/House/search/****
+    */
     [HttpGet("search/{town}")]
     public async Task<IEnumerable<HouseItem>> Search(string town)
     {
@@ -26,14 +33,20 @@ public class HouseController(MyDbContext context) : ControllerBase
     }
 
 
-    //Get all houses
+    /*
+        GET
+        http://localhost:xxxx/api/House/
+    */
     [HttpGet]
     public async Task<ActionResult<IEnumerable<HouseItem>>> GetHousesAsync()
     {
         return await _context.HouseItems.ToListAsync();
     }
 
-    //GET house
+    /*
+        GET Id
+        http://localhost:xxxx/api/House/****-****-****-****
+    */
     [HttpGet("{Id}")]
     public async Task<ActionResult<HouseItem>> GetHouseItem(Guid Id)
     {
@@ -48,18 +61,25 @@ public class HouseController(MyDbContext context) : ControllerBase
         }
     }
 
-    //POST house
+    /*
+        POST with authorization
+        http://localhost:xxxx/api/House/
+    */
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)
     {
         _context.HouseItems.Add(item);
+
         await _context.SaveChangesAsync();
 
         return Ok();
     }
-    //PUT/Update house
 
+    /*
+        PUT Id
+        http://localhost:xxxx/api/House/****-****-****-*****
+    */
     [HttpPut("{id}")]
     public async Task<IActionResult> PutHouseItem(Guid id, HouseItemDTO houseItemDTO)
     {
@@ -88,10 +108,15 @@ public class HouseController(MyDbContext context) : ControllerBase
         {
             return NotFound();
         }
+
         return NoContent();
 
     }
 
+    /*
+        DELETE Id
+        http://localhost:xxxx/api/House/****-****-****-*****
+    */
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteHouseItem(Guid id)
     {
@@ -107,24 +132,13 @@ public class HouseController(MyDbContext context) : ControllerBase
 
     }
 
-    //DELETE house
-
-
+    /*
+        Small function for checking if Id is indeed exist
+     */
     private bool HouseItemExist(Guid id)
     {
         return _context.HouseItems.Any(e => e.Id == id);
     }
-
-    private static HouseItemDTO HouseToDTO(HouseItem houseItem) => new()
-    {
-        Id = houseItem.Id,
-        Town = houseItem.Town,
-        Price = houseItem.Price,
-        ImageSrc = houseItem.ImageSrc,
-        DateFrom = houseItem.DateFrom,
-        DateTo = houseItem.DateTo,
-        IsComplete = houseItem.IsComplete
-    };
 }
 
 

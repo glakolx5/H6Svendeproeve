@@ -6,6 +6,9 @@ namespace Backend.Infrastructure;
 
 public class MyDbContext(DbContextOptions options) : IdentityDbContext<AppUser>(options)
 {
+    /*
+        To query and save instances of HouseItem
+    */
     public DbSet<HouseItem> HouseItems { get; set; } = null!;
 
 }
