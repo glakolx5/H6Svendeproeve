@@ -1,7 +1,5 @@
-"use server"
 import { redirect } from 'next/navigation'
 import { auth } from "../auth"
-
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import { Label } from '../components/ui/label';

@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
 /*
     Identity services
     Adding of authentication using of bearer token
@@ -37,8 +36,11 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     /login
     /refresh
     etc..
+
+    Adding of Roles using Identity Role
 */
-builder.Services.AddIdentityCore<AppUser>().AddRoles<IdentityRole>()
+builder.Services.AddIdentityCore<AppUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MyDbContext>()
     .AddApiEndpoints();
 

@@ -14,7 +14,7 @@ export async function createUser(formData: FormData) {
     }
 
     if (data["password"] !== data["password_confirm"]) {
-        return new Error("passwords are not the same")
+        console.log("Passwords are not the same");
     }
     else {
         const JSONData = JSON.stringify({ email, password });
@@ -33,7 +33,6 @@ export async function createUser(formData: FormData) {
         const result = response.status
         if (result != 200) {
             console.log(result)
-            return Error
         }
         else {
             redirect("/register/registered")

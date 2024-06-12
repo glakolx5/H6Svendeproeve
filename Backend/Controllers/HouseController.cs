@@ -72,7 +72,6 @@ public class HouseController(MyDbContext context) : ControllerBase
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)
     {
         
-        
         _context.HouseItems.Add(item);
 
         await _context.SaveChangesAsync();
