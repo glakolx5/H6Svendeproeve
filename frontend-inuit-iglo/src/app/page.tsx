@@ -21,6 +21,7 @@ export default async function Home({
 
   return (
     <main className="container mx-auto py-12 space-y-8">
+
       <WelcomeItem />
 
       <div className="grid justify-items-center cols-y-1">
@@ -45,11 +46,14 @@ export default async function Home({
   );
 }
 
+//Getting data from endpoint
 async function getData() {
+
   const webapi = "http://localhost:5033";
   const endpoint = "/api/House";
 
   const fulllink = `${webapi}${endpoint}`
+
   const res = await fetch(fulllink, { cache: 'no-store' });
 
   if (!res.ok) {
@@ -59,6 +63,7 @@ async function getData() {
   return res.json();
 }
 
+//This will activate when there is query and call the endpoint
 async function getSearch(query: any) {
   if (!query) return
 

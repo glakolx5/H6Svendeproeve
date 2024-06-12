@@ -1,6 +1,7 @@
 using Backend.Infrastructure;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ public class HouseController(MyDbContext context) : ControllerBase
     Dependency injection for context - HouseItems
     */
     private readonly MyDbContext _context = context;
+
 
     /*
       will search on
@@ -66,9 +68,11 @@ public class HouseController(MyDbContext context) : ControllerBase
         http://localhost:xxxx/api/House/
     */
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)
     {
+        
+        
         _context.HouseItems.Add(item);
 
         await _context.SaveChangesAsync();

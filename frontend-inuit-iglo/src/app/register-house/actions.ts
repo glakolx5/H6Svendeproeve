@@ -29,6 +29,7 @@ export async function createHouse(formData: FormData) {
     const fulllink = `${webapi}${endpoint}`
 
     const bear = session?.user?.id
+    //console.log(bear)
     
     const response = await fetch(fulllink,
         {
@@ -47,7 +48,7 @@ export async function createHouse(formData: FormData) {
     const result = response.status
 
     if (result != 200) {
-        console.log("error in the posting images")
+        console.log("error in the creating house item:\n")
     }
     else {
         console.log("register house complete")

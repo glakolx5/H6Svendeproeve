@@ -8,7 +8,8 @@ import { URLSearchParams } from "url"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
-        strategy: "jwt"
+        strategy: "jwt",
+        maxAge: 3600
     },
     providers: [
         Credentials({
@@ -51,9 +52,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })],
     callbacks: {
         jwt: async ({ token, user, account }: any) => {
-
+            //console.log(user)
             if (account && user) {
-
                 return {
                     email: user.email,
                     tokenType: user.tokenType,

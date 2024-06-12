@@ -3,6 +3,7 @@ using Backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -17,6 +18,7 @@ builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerSche
 
 //Add authorization
 builder.Services.AddAuthorizationBuilder();
+
 
 //MySQL configure variables
 var connectionString = builder.Configuration.GetConnectionString("ExamDB");
@@ -36,7 +38,7 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     /refresh
     etc..
 */
-builder.Services.AddIdentityCore<AppUser>()
+builder.Services.AddIdentityCore<AppUser>().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MyDbContext>()
     .AddApiEndpoints();
 
