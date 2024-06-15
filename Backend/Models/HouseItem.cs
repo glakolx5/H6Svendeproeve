@@ -9,5 +9,4 @@ public class HouseItem
     public DateTime DateFrom { get; set; }
     public DateTime DateTo { get; set; }
     public bool IsComplete { get; set; }
-
 }

@@ -4,6 +4,6 @@ namespace Backend.Models;
 
 public class AppUser : IdentityUser
 {
-
+    
 }
 

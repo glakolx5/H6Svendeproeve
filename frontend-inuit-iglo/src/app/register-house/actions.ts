@@ -49,6 +49,7 @@ export async function createHouse(formData: FormData) {
 
     if (result != 200) {
         console.log("error in the creating house item:\n")
+        console.log(`Status code :${result}`)
     }
     else {
         console.log("register house complete")

@@ -1,7 +1,7 @@
+using System.Security.Claims;
 using Backend.Infrastructure;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +9,13 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HouseController(MyDbContext context) : ControllerBase
+public class HouseController(MyDbContext context, IHttpContextAccessor httpContextAccessor) : ControllerBase
 {
     /*
     Dependency injection for context - HouseItems
     */
     private readonly MyDbContext _context = context;
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
 
     /*
@@ -71,7 +72,8 @@ public class HouseController(MyDbContext context) : ControllerBase
     [Authorize(Roles = "admin")]
     public async Task<ActionResult<HouseItem>> PostHouseAsync(HouseItem item)
     {
-        
+        //Console.WriteLine("test" + User.FindFirstValue(ClaimTypes.Email));
+        //Console.WriteLine("test2" + _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Email));
         _context.HouseItems.Add(item);
 
         await _context.SaveChangesAsync();
