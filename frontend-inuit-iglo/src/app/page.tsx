@@ -1,4 +1,3 @@
-
 import { Suspense } from "react";
 import Search from "./components/search";
 import { HouseCard } from "./house-card";
@@ -41,7 +40,6 @@ export default async function Home({
           }
         </Suspense>
       </div>
-
     </main>
   );
 }

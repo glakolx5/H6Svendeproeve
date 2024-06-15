@@ -16,7 +16,7 @@ export default async function Register() {
     return (
         <main className='container mx-auto py-12 space-y-8'>
             <form action={createUser}>
-                <div className='grid grid-cols-1 gap-5 mx-36'>
+                <div className='grid grid-cols-1 gap-5 lg:mx-36'>
 
                     <Label htmlFor="email" className=' font-bold text-1xl'>Email:</Label>
                     <Input name="email" type='email' className=" text-1xl" />

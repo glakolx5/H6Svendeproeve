@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Backend.Infrastructure;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -9,13 +8,14 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HouseController(MyDbContext context, IHttpContextAccessor httpContextAccessor) : ControllerBase
+public class HouseController(MyDbContext context /*IHttpContextAccessor httpContextAccessor*/) : ControllerBase
 {
     /*
     Dependency injection for context - HouseItems
     */
     private readonly MyDbContext _context = context;
-    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+
+    //private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
 
     /*
